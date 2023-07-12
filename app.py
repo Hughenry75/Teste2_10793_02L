@@ -1,6 +1,5 @@
 
-#C:\Users\hugom\Documents\GitHub\Teste2_10793_02L
-#Teste 2
+# Jogo da bola
 
 # import tkinter as tk
 # import random
