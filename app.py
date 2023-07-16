@@ -39,45 +39,55 @@ def clique_do_botao_sair():
 Jogo_da_bola = tk.Tk()
 Jogo_da_bola.title("Jogo de Futebol")
 Jogo_da_bola.geometry("300x200")
+Jogo_da_bola.rowconfigure(10, weight=1)
+Jogo_da_bola.columnconfigure(8, weight=1)
+
+
+Nomes_Equipas = tk.Label(Jogo_da_bola, text="Nomes")
+Nomes_Equipas.grid(row=0, column=0, sticky="nw")
 
 # Criar widgets - equipa 1
 
 nome_equipa1 = tk.Label(Jogo_da_bola, text="Equipa 1:")
-nome_equipa1.grid(row=0, column=0)
+nome_equipa1.grid(row=1, column=0, sticky="sw")
 intro_equipa1 = tk.Entry(Jogo_da_bola)
-intro_equipa1.grid(row=0, column=1)
+intro_equipa1.grid(row=1, column=1)
 
 # Criar widgets - equipa 2
 
 nome_equipa2 = tk.Label(Jogo_da_bola, text="Equipa 2:")
-nome_equipa2.grid(row=1, column=0)
+nome_equipa2.grid(row=2, column=0, sticky="sw")
 intro_equipa2 = tk.Entry(Jogo_da_bola)
-intro_equipa2.grid(row=1, column=1)
+intro_equipa2.grid(row=2, column=1)
+
+# Definição dos elementos de classificação das equipas
+
+posicao = 4
+
+Jogo_da_bola.rowconfigure(posicao, weight=1)
+
+nome_classificacao = tk.Label(Jogo_da_bola, text="Classe")
+nome_classificacao.grid(row=posicao+1, column=0, sticky="nw")
+
+nome_equipa1_classificacao = tk.Label(Jogo_da_bola, text="Equipa 1:")
+nome_equipa1_classificacao.grid(row=posicao+2, column=0, sticky="w")
+escalao_equipa1 = tk.Scale(Jogo_da_bola, from_=0, to=10, orient=tk.HORIZONTAL)
+escalao_equipa1.grid(row=posicao+2, column=1, sticky="w")
+
+nome_equipa2_classificacao = tk.Label(Jogo_da_bola, text="Equipa 2:")
+nome_equipa2_classificacao.grid(row=posicao+3, column=0, sticky="w")
+escalao_equipa2 = tk.Scale(Jogo_da_bola, from_=0, to=10, orient=tk.HORIZONTAL)
+escalao_equipa2.grid(row=posicao+3, column=1, sticky="w")
+
+# Usar um botão para jogar, associar um comando ao botão, que por sua vez chama a principal função, jogar.
+
+botao_jogar = tk.Button(Jogo_da_bola, text="JOGAR", command=jogar)
+botao_jogar.grid(row=posicao+5, column=5, sticky="s")
 
 # Definição do botão de saída
 
 sair = tk.Button(Jogo_da_bola, text="SAIR", command=clique_do_botao_sair)
-sair.grid(row=7, column=5)
-
-# Definição dos elementos de classificação das equipas
-
-nome_classificacao = tk.Label(Jogo_da_bola, text="Classificação (0-10):")
-nome_classificacao.grid(row=2, column=0)
-
-nome_equipa1_classificacao = tk.Label(Jogo_da_bola, text="Equipa 1:")
-nome_equipa1_classificacao.grid(row=3, column=0)
-escalao_equipa1 = tk.Scale(Jogo_da_bola, from_=0, to=10, orient=tk.HORIZONTAL)
-escalao_equipa1.grid(row=3, column=1)
-
-nome_equipa2_classificacao = tk.Label(Jogo_da_bola, text="Equipa 2:")
-nome_equipa2_classificacao.grid(row=4, column=0)
-escalao_equipa2 = tk.Scale(Jogo_da_bola, from_=0, to=10, orient=tk.HORIZONTAL)
-escalao_equipa2.grid(row=4, column=1)
-
-# Usar um botão para jogar, associar um comando ao botão, que por sua vez chama a principal função, jogar.
-
-botao_jogar = tk.Button(Jogo_da_bola, text="Jogar", command=jogar)
-botao_jogar.grid(row=5, columnspan=2)
+sair.grid(row=posicao+5, column=8, sticky="s")
 
 # Executar janela
 Jogo_da_bola.mainloop()
