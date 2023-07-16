@@ -1,69 +1,63 @@
-
-#C:\Users\hugom\Documents\GitHub\Teste2_10793_02L
-#Teste 2
-
-# import tkinter as tk
-# import random
-# class SimuladorFutebol(tk.Tk):
-#     def __init__(self):
-#         super().__init__()
-
-#         self.title("Simulador de Equipa")
-
-#         self.equipa = {"nome": "Minha Equipa", "jogadores": [], "saldo": 1000}
-
-#         tk.Label(self, text=self.equipa["nome"]).pack()
-#         tk.Label(self, text=f"Saldo: {self.equipa['saldo']}").pack()
-
-#         tk.Button(self, text="Simular Jogo", command=self.simular_jogo).pack()
-
-# def simular_jogo(self):
-#     resultado = random.choice(['Vitória', 'Derrota', 'Empate'])
-#     tk.Label(self, text=f"Resultado do jogo: {resultado}").pack()
-
-# if __name__ == '__main__':
-#     app = SimuladorFutebol()
-#     app.mainloop()
-
 import tkinter as tk
-import tkinter.simpledialog as simpledialog
+from tkinter import messagebox
 import tkinter.messagebox as messagebox
 import random
 
+def jogar():
+    equipa1_nome = intro_equipa1.get()
+    equipa2_nome = intro_equipa2.get()
+    equipa1_classificacao = escalao_equipa1.get()
+    equipa2_classificacao = escalao_equipa2.get()
 
-class SimuladorFutebol(tk.Tk):
-    def __init__(self):
-        super().__init__()
-        self.title("Simulador de Equipa")
+    resultado_1 = random.randint(0, equipa1_classificacao)
+    resultado_2 = random.randint(0, equipa2_classificacao)
 
-        self.equipa = {"nome": "Minha Equipa", "jogadores": [], "saldo": 1000000.00}
+    if round(resultado_1,0) > round(resultado_2,0):
+        vencedor = equipa1_nome
+    elif round(resultado_1,0) < round(resultado_2,0):
+        vencedor = equipa2_nome
+    else:
+        vencedor = "Empate"
 
-        tk.Label(self, text=self.equipa["nome"]).pack()
-        tk.Label(self, text=f"Saldo: {self.equipa['saldo']}").pack()
+    messagebox.showinfo("resultado", f"O vencedor é: {vencedor}")
 
-        tk.Button(self, text="Simular Jogo", command=self.simular_jogo).pack()
-        tk.Button(self, text="Preencher nome da Equipa", command=self.preencher_nome).pack()
-        tk.Entry(self, width=40).pack()
+# Criar janela
+Jogo_da_bola = tk.Tk()
+Jogo_da_bola.title("Jogo de Futebol")
+Jogo_da_bola.geometry("300x200")
+
+# Criar widgets
+nome_equipa1 = tk.Label(Jogo_da_bola, text="Equipa 1:")
+nome_equipa1.grid(row=0, column=0)
+intro_equipa1 = tk.Entry(Jogo_da_bola)
+intro_equipa1.grid(row=0, column=1)
+
+nome_equipa2 = tk.Label(Jogo_da_bola, text="Equipa 2:")
+nome_equipa2.grid(row=1, column=0)
+intro_equipa2 = tk.Entry(Jogo_da_bola)
+intro_equipa2.grid(row=1, column=1)
 
         sair = tk.Button(self, text="SAIR", command=self.clique_do_botao_sair).pack()
 
-    def simular_jogo(self):
-        resultado = random.choice(['Vitória', 'Derrota', 'Empate'])
-        tk.Label(self, text=f"Resultado do jogo: {resultado}").pack()
+nome_classificacao = tk.Label(Jogo_da_bola, text="Classificação (0-10):")
+nome_classificacao.grid(row=2, column=0)
 
-    def preencher_nome(self):
-        nome_equipa = simpledialog.askstring("Preencher Nome da Equipa", "Digite o nome da Equipa:")
-        if nome_equipa:
-            self.equipa["nome"] = nome_equipa
-            self.nome_label.config(text=self.equipa["nome"])
+nome_equipa1_classificacao = tk.Label(Jogo_da_bola, text="Equipa 1:")
+nome_equipa1_classificacao.grid(row=3, column=0)
+escalao_equipa1 = tk.Scale(Jogo_da_bola, from_=0, to=10, orient=tk.HORIZONTAL)
+escalao_equipa1.grid(row=3, column=1)
 
+nome_equipa2_classificacao = tk.Label(Jogo_da_bola, text="Equipa 2:")
+nome_equipa2_classificacao.grid(row=4, column=0)
+escalao_equipa2 = tk.Scale(Jogo_da_bola, from_=0, to=10, orient=tk.HORIZONTAL)
+escalao_equipa2.grid(row=4, column=1)
     def clique_do_botao_sair(self):
         sair = messagebox.showinfo("Mensagem", "Agradecemos a sua participação")
         self.destroy()   
          
 
+botao_jogar = tk.Button(Jogo_da_bola, text="Jogar", command=jogar)
+botao_jogar.grid(row=5, columnspan=2)
 
-if __name__ == '__main__':
-    app = SimuladorFutebol()
-    app.mainloop()
-print(app.equipa)
+# Executar janela
+Jogo_da_bola.mainloop()
