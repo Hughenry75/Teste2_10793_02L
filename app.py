@@ -21,7 +21,7 @@ def jogar():
     messagebox.showinfo("resultado", f"O vencedor é: {vencedor}")
 
 def clique_do_botao_sair():
-    sair = messagebox.showinfo("Mensagem", "Agradecemos a sua participação! O programa vai encerrar.")
+    sair = messagebox.showinfo("Mensagem", "Agradecemos a sua participação! O programa irá encerrar.")
     Jogo_da_bola.destroy()  
 
 # Criar janela
