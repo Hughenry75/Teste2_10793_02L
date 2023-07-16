@@ -1,6 +1,5 @@
 import tkinter as tk
 from tkinter import messagebox
-import tkinter.messagebox as messagebox
 import random
 
 def jogar():
@@ -21,6 +20,10 @@ def jogar():
 
     messagebox.showinfo("resultado", f"O vencedor é: {vencedor}")
 
+def clique_do_botao_sair():
+    sair = messagebox.showinfo("Mensagem", "Agradecemos a sua participação! O programa vai encerrar.")
+    Jogo_da_bola.destroy()  
+
 # Criar janela
 Jogo_da_bola = tk.Tk()
 Jogo_da_bola.title("Jogo de Futebol")
@@ -36,8 +39,8 @@ nome_equipa2 = tk.Label(Jogo_da_bola, text="Equipa 2:")
 nome_equipa2.grid(row=1, column=0)
 intro_equipa2 = tk.Entry(Jogo_da_bola)
 intro_equipa2.grid(row=1, column=1)
-
-        sair = tk.Button(self, text="SAIR", command=self.clique_do_botao_sair).pack()
+sair = tk.Button(Jogo_da_bola, text="SAIR", command=clique_do_botao_sair)
+sair.grid(row=7, column=5)
 
 nome_classificacao = tk.Label(Jogo_da_bola, text="Classificação (0-10):")
 nome_classificacao.grid(row=2, column=0)
@@ -51,9 +54,8 @@ nome_equipa2_classificacao = tk.Label(Jogo_da_bola, text="Equipa 2:")
 nome_equipa2_classificacao.grid(row=4, column=0)
 escalao_equipa2 = tk.Scale(Jogo_da_bola, from_=0, to=10, orient=tk.HORIZONTAL)
 escalao_equipa2.grid(row=4, column=1)
-    def clique_do_botao_sair(self):
-        sair = messagebox.showinfo("Mensagem", "Agradecemos a sua participação")
-        self.destroy()   
+
+ 
          
 
 botao_jogar = tk.Button(Jogo_da_bola, text="Jogar", command=jogar)
