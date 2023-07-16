@@ -27,6 +27,7 @@
 
 import tkinter as tk
 import tkinter.simpledialog as simpledialog
+import tkinter.messagebox as messagebox
 import random
 
 
@@ -44,6 +45,8 @@ class SimuladorFutebol(tk.Tk):
         tk.Button(self, text="Preencher nome da Equipa", command=self.preencher_nome).pack()
         tk.Entry(self, width=40).pack()
 
+        sair = tk.Button(self, text="SAIR", command=self.clique_do_botao_sair).pack()
+
     def simular_jogo(self):
         resultado = random.choice(['Vitória', 'Derrota', 'Empate'])
         tk.Label(self, text=f"Resultado do jogo: {resultado}").pack()
@@ -54,6 +57,10 @@ class SimuladorFutebol(tk.Tk):
             self.equipa["nome"] = nome_equipa
             self.nome_label.config(text=self.equipa["nome"])
 
+    def clique_do_botao_sair(self):
+        sair = messagebox.showinfo("Mensagem", "Agradecemos a sua participação")
+        self.destroy()   
+         
 
 
 if __name__ == '__main__':
