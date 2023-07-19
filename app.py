@@ -6,7 +6,7 @@ import tkinter as tk
 from tkinter import messagebox
 import random
 
-# Esta definção da classe não era imprescindível, 
+# Esta definição da classe não era imprescindível, 
 # mas entendemos que deveríamos fazer uso dos nossos conhecimentos nesse domínio
 
 class Jogo_Futebol(tk.Tk):
@@ -68,7 +68,9 @@ class Jogo_Futebol(tk.Tk):
     def Niveis_Equipas(self):
         
         """
-        ### Usámos o "Scale" para criar os sliders, que achámos interessante para definir o nível das equipas
+        ### Usámos o "Scale" para criar os sliders, 
+        ### que achámos interessante para definir o nível das equipas,
+        ### de modo a termos algo de original, tendo em conta a escassez de tempo.
         """
         
         self.escalao_equipa1 = tk.Scale(self, label="Equipa 1: ", from_=0, to=10, orient=tk.HORIZONTAL)
@@ -80,7 +82,7 @@ class Jogo_Futebol(tk.Tk):
     def Criar_botoes(self):
         
         """
-        ### Os botões de jogar e sair foram criados da forma que aprendemos, associando funções como comandos
+        ### Os botões de jogar e sair foram criados da forma que aprendemos, associando funções como comandos.
         """       
         
         jogar_button = tk.Button(self, text="JOGAR", command=self.jogar)
@@ -125,6 +127,7 @@ class Jogo_Futebol(tk.Tk):
         
         messagebox.showinfo("Mensagem", "Agradecemos a sua participação! O programa irá encerrar.")
         self.destroy()
+
 
 # Estas duas linhas definem a app como uma instância da classe Jogo_Futebol e inicializa-a.
 
